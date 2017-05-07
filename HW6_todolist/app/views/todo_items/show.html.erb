@@ -1,4 +1,4 @@
-<p id="notice"><%= notice %></p>
+<p> Belongs to Todo List: <%= @todo_list.list_name %> </p>
 
 <p>
   <strong>Title:</strong>
@@ -22,3 +22,5 @@
 
 <%= link_to 'Edit', edit_todo_list_todo_item_path(@todo_list, @todo_item) %> |
 <%= link_to 'Back', @todo_list %> |
+
+<%= link_to 'Todo List', @todo_list %>

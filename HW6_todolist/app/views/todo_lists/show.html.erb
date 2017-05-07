@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <p>
   <strong>List name:</strong>
   <%= @todo_list.list_name %>
@@ -9,6 +7,11 @@
   <strong>List due date:</strong>
   <%= @todo_list.list_due_date %>
 </p>
+
+<%= link_to 'Edit', edit_todo_list_path(@todo_list) %> |
+<%= link_to 'Back', todo_lists_path %>
+<br>
+<br>
 
 <table>
   <thead>
@@ -28,12 +31,11 @@
         <td><%= todo_item.due_date %></td>
         <td><%= todo_item.description %></td>
         <td><%= todo_item.completed %></td>
-        <td><%= link_to 'Show', [@todo_list,todo_item] %></td>
-        <td><%= link_to 'Destroy', [@todo_list,todo_item], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', [@todo_list, todo_item] %></td>
+        <td><%= link_to 'Destroy', [@todo_list, todo_item], method: :delete %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-<%= link_to 'New Todo Item',new_todo_list_todo_item_path(@todo_list)  %>
-<%= link_to 'Edit', edit_todo_list_path(@todo_list) %> |
-<%= link_to 'Back', todo_lists_path %>
+<br>
+<%= link_to 'Create New Todo Item',new_todo_list_todo_item_path(@todo_list) %>

@@ -1,1 +1,1 @@
-json.partial! "todo_items/todo_item", todo_item: @todo_item
+json.extract! @todo_item, :id, :title, :due_date, :description, :completed, :created_at, :updated_at
