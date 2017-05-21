@@ -5,7 +5,7 @@ development:
     default:
       # Defines the name of the default database that Mongoid can connect to.
       # (required).
-      database: raceday_development
+      database: create_development
       # Provides the hosts the default client can connect to. Must be an array
       # of host:port pairs. (required)
       hosts:
@@ -128,16 +128,10 @@ development:
 test:
   clients:
     default:
-      database: raceday_test
+      database: create_test
       hosts:
         - localhost:27017
       options:
         read:
           mode: :primary
         max_pool_size: 1
-production:
-  clients:
-    default:
-      uri: mongodb://<dbuser>:<dbpassword>@ds137891.mlab.com:37891/raceday-jiantao
-      options:
-        connect_timeout: 15
