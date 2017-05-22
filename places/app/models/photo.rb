@@ -9,6 +9,8 @@ class Photo
      Mongoid::Clients.default
   end
 
+
+
   def initialize (params={})
   	@id = params[:_id].to_s unless params[:_id].nil?
   	if params[:metadata] && params[:metadata][:location] 
@@ -20,6 +22,34 @@ class Photo
   def persisted?
   	!@id.nil?
   end
+
+  def place 
+  	@place.nil? ? nil : Place.find(@place)
+  end
+
+  def place=(value)
+  	@place = case value
+  	when BSON::ObjectId
+  		value
+  	when String
+  		BSON::ObjectId.from_string value
+  	when Place
+  		BSON::ObjectId.from_string value.id
+  	when nil
+  		nil
+  	end
+  end
+
+  def self.find_photos_for_place placeId
+  	pd = placeId 
+     if placeId.is_a?(String)
+     	pd = BSON::ObjectId.from_string placeId
+     end
+    mongo_client.database.fs.find(:'metadata.place' => pd)
+  end
+
+
+    
 
   def save
   	description = {}
