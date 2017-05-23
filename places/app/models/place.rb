@@ -1,4 +1,5 @@
 class Place
+  include ActiveModel::Model
   include Mongoid::Document
 
   attr_accessor :id, :formatted_address, :location, :address_components
@@ -19,6 +20,10 @@ class Place
 
   def self.collection
     self.mongo_client['places']
+  end
+
+  def persisted?
+    !@id.nil?
   end
 
   def self.load_all (file_path)
