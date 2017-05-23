@@ -121,6 +121,14 @@ class Place
      self.class.to_places docs
     end
 
+    def photos (skip=0,limit=nil)
+      res = Photo.find_photos_for_place(@id).skip(skip)
+      res = res.limit(limit) unless limit.nil?
+      res.map {|r| Photo.new r}
+    end
+      
+    
+
 
 
 end
